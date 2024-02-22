@@ -8,13 +8,31 @@ part of 'router.dart';
 
 List<RouteBase> get $appRoutes => [
       $homeRoute,
-      $rootNavigatorPage01Route,
-      $rootNavigatorPage02Route,
     ];
 
 RouteBase get $homeRoute => GoRouteData.$route(
       path: '/',
       factory: $HomeRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'page-01',
+          factory: $RootPage01RouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'page-02',
+              factory: $RootPage02RouteExtension._fromState,
+            ),
+          ],
+        ),
+        GoRouteData.$route(
+          path: 'dialog-01',
+          factory: $RootDialog01RouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'sheet-01',
+          factory: $RootBottomSheet01RouteExtension._fromState,
+        ),
+      ],
     );
 
 extension $HomeRouteExtension on HomeRoute {
@@ -34,14 +52,8 @@ extension $HomeRouteExtension on HomeRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $rootNavigatorPage01Route => GoRouteData.$route(
-      path: '/page-01',
-      factory: $RootNavigatorPage01RouteExtension._fromState,
-    );
-
-extension $RootNavigatorPage01RouteExtension on RootNavigatorPage01Route {
-  static RootNavigatorPage01Route _fromState(GoRouterState state) =>
-      RootNavigatorPage01Route();
+extension $RootPage01RouteExtension on RootPage01Route {
+  static RootPage01Route _fromState(GoRouterState state) => RootPage01Route();
 
   String get location => GoRouteData.$location(
         '/page-01',
@@ -57,17 +69,47 @@ extension $RootNavigatorPage01RouteExtension on RootNavigatorPage01Route {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $rootNavigatorPage02Route => GoRouteData.$route(
-      path: '/page-02',
-      factory: $RootNavigatorPage02RouteExtension._fromState,
-    );
-
-extension $RootNavigatorPage02RouteExtension on RootNavigatorPage02Route {
-  static RootNavigatorPage02Route _fromState(GoRouterState state) =>
-      RootNavigatorPage02Route();
+extension $RootPage02RouteExtension on RootPage02Route {
+  static RootPage02Route _fromState(GoRouterState state) => RootPage02Route();
 
   String get location => GoRouteData.$location(
-        '/page-02',
+        '/page-01/page-02',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $RootDialog01RouteExtension on RootDialog01Route {
+  static RootDialog01Route _fromState(GoRouterState state) =>
+      RootDialog01Route();
+
+  String get location => GoRouteData.$location(
+        '/dialog-01',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $RootBottomSheet01RouteExtension on RootBottomSheet01Route {
+  static RootBottomSheet01Route _fromState(GoRouterState state) =>
+      RootBottomSheet01Route();
+
+  String get location => GoRouteData.$location(
+        '/sheet-01',
       );
 
   void go(BuildContext context) => context.go(location);
