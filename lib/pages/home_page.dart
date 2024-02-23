@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
               ),
             1 => FilledButton(
                 onPressed: () {
-                  context.go('/page-01/page-02');
+                  context.go('/page-01/page-02?attr01=true&attr02=true');
                 },
                 child: const Text('Page 02'),
               ),

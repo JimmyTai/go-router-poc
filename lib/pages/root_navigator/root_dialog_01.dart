@@ -18,9 +18,11 @@ class RootDialog01 extends StatelessWidget {
     return const Dialog(
       insetPadding: EdgeInsets.symmetric(horizontal: 64.0),
       backgroundColor: Colors.white,
-      child: SizedBox(
-        width: double.infinity,
-        height: 250.0,
+      child: Scaffold(
+        body: SizedBox(
+          width: double.infinity,
+          height: 250.0,
+        ),
       ),
     );
   }

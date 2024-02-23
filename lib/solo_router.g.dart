@@ -1,42 +1,47 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'router.dart';
+part of 'solo_router.dart';
 
 // **************************************************************************
 // GoRouterGenerator
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $homeRoute,
+      $splashRoute,
     ];
 
-RouteBase get $homeRoute => GoRouteData.$route(
+RouteBase get $splashRoute => GoRouteData.$route(
       path: '/',
-      factory: $HomeRouteExtension._fromState,
+      factory: $SplashRouteExtension._fromState,
       routes: [
-        GoRouteData.$route(
-          path: 'page-01',
-          factory: $RootPage01RouteExtension._fromState,
+        ShellRouteData.$route(
+          factory: $LoginRootRouteExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: 'page-02',
-              factory: $RootPage02RouteExtension._fromState,
+              path: 'login',
+              factory: $LoginByAccountRouteExtension._fromState,
+              routes: [
+                GoRouteData.$route(
+                  path: 'login-by-phone',
+                  factory: $LoginByPhoneRouteExtension._fromState,
+                ),
+                GoRouteData.$route(
+                  path: 'login-by-email',
+                  factory: $LoginByEmailRouteExtension._fromState,
+                ),
+              ],
             ),
           ],
         ),
         GoRouteData.$route(
-          path: 'dialog-01',
-          factory: $RootDialog01RouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'sheet-01',
-          factory: $RootBottomSheet01RouteExtension._fromState,
+          path: 'main',
+          factory: $MainRouteExtension._fromState,
         ),
       ],
     );
 
-extension $HomeRouteExtension on HomeRoute {
-  static HomeRoute _fromState(GoRouterState state) => HomeRoute();
+extension $SplashRouteExtension on SplashRoute {
+  static SplashRoute _fromState(GoRouterState state) => SplashRoute();
 
   String get location => GoRouteData.$location(
         '/',
@@ -52,18 +57,16 @@ extension $HomeRouteExtension on HomeRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $RootPage01RouteExtension on RootPage01Route {
-  static RootPage01Route _fromState(GoRouterState state) => RootPage01Route(
-        attr01: _$convertMapValue(
-                'attr01', state.uri.queryParameters, _$boolConverter) ??
-            false,
-      );
+extension $LoginRootRouteExtension on LoginRootRoute {
+  static LoginRootRoute _fromState(GoRouterState state) => LoginRootRoute();
+}
+
+extension $LoginByAccountRouteExtension on LoginByAccountRoute {
+  static LoginByAccountRoute _fromState(GoRouterState state) =>
+      LoginByAccountRoute();
 
   String get location => GoRouteData.$location(
-        '/page-01',
-        queryParams: {
-          if (attr01 != false) 'attr01': attr01.toString(),
-        },
+        '/login',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -76,18 +79,12 @@ extension $RootPage01RouteExtension on RootPage01Route {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $RootPage02RouteExtension on RootPage02Route {
-  static RootPage02Route _fromState(GoRouterState state) => RootPage02Route(
-        attr02: _$convertMapValue(
-                'attr02', state.uri.queryParameters, _$boolConverter) ??
-            false,
-      );
+extension $LoginByPhoneRouteExtension on LoginByPhoneRoute {
+  static LoginByPhoneRoute _fromState(GoRouterState state) =>
+      LoginByPhoneRoute();
 
   String get location => GoRouteData.$location(
-        '/page-01/page-02',
-        queryParams: {
-          if (attr02 != false) 'attr02': attr02.toString(),
-        },
+        '/login/login-by-phone',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -100,12 +97,12 @@ extension $RootPage02RouteExtension on RootPage02Route {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $RootDialog01RouteExtension on RootDialog01Route {
-  static RootDialog01Route _fromState(GoRouterState state) =>
-      RootDialog01Route();
+extension $LoginByEmailRouteExtension on LoginByEmailRoute {
+  static LoginByEmailRoute _fromState(GoRouterState state) =>
+      LoginByEmailRoute();
 
   String get location => GoRouteData.$location(
-        '/dialog-01',
+        '/login/login-by-email',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -118,12 +115,11 @@ extension $RootDialog01RouteExtension on RootDialog01Route {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $RootBottomSheet01RouteExtension on RootBottomSheet01Route {
-  static RootBottomSheet01Route _fromState(GoRouterState state) =>
-      RootBottomSheet01Route();
+extension $MainRouteExtension on MainRoute {
+  static MainRoute _fromState(GoRouterState state) => MainRoute();
 
   String get location => GoRouteData.$location(
-        '/sheet-01',
+        '/main',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -134,24 +130,4 @@ extension $RootBottomSheet01RouteExtension on RootBottomSheet01Route {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
-}
-
-T? _$convertMapValue<T>(
-  String key,
-  Map<String, String> map,
-  T Function(String) converter,
-) {
-  final value = map[key];
-  return value == null ? null : converter(value);
-}
-
-bool _$boolConverter(String value) {
-  switch (value) {
-    case 'true':
-      return true;
-    case 'false':
-      return false;
-    default:
-      throw UnsupportedError('Cannot convert "$value" into a bool.');
-  }
 }

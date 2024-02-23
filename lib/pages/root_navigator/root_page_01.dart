@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class RootPage01Route extends GoRouteData {
+  const RootPage01Route({this.attr01 = false});
+
+  final bool attr01;
+
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const RootPage01();
@@ -9,10 +13,13 @@ class RootPage01Route extends GoRouteData {
 }
 
 class RootPage01 extends StatelessWidget {
-  const RootPage01({super.key});
+  const RootPage01({super.key, this.attr01 = false});
+
+  final bool attr01;
 
   @override
   Widget build(BuildContext context) {
+    print('attr01: $attr01');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Root Page 01'),
@@ -23,9 +30,9 @@ class RootPage01 extends StatelessWidget {
           return switch (index) {
             0 => FilledButton(
                 onPressed: () {
-                  context.go('/page-01/page-02');
+                  context.pop();
                 },
-                child: const Text('Page 02'),
+                child: const Text('Back'),
               ),
             _ => const SizedBox.shrink()
           };
